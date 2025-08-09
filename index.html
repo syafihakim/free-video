@@ -77,20 +77,33 @@
       Harga tak masuk akal RM20!
     </p>
     <div class="bg-gray-500 text-white p-4 text-center mb-4 blinking-border">
-      <p class="mb-2 text-sm">
-        Daftar hari ini untuk dapatkan jaminan
-        <span class="text-yellow-400 font-bold">full refund</span> 
-        jika anda tak berpuas hati
-      </p>
-      <div id="countdown" class="text-l font-bold text-yellow-400"></div>
+      <div id="loading" class="flex items-center justify-center">
+        <p class="mb-2 text-xs mr-4">
+          Loading bonus anda
+        </p>
+        <svg class="w-6 h-6" fill="hsl(0, 85%, 50%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
+            <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/>
+          </path>
+        </svg>
+      </div>
+      <div id="guarantee-content" class="hidden">
+        <p class="mb-2 text-sm">
+          Daftar hari ini untuk dapatkan jaminan
+          <span class="text-yellow-400 font-bold">full refund</span> 
+          jika anda tak berpuas hati
+        </p>
+        <div id="countdown" class="text-l font-bold text-yellow-400"></div>
+      </div>
     </div>
+
 
     <a href="https://syafihakim.github.io/cpp-level-1-site/" 
        class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:-translate-y-0.5 block w-full text-center">
-        Lihat details Pakej RM20
+        Tekan untuk lihat details Pakej RM20
     </a>
     <p class="text-xs text-gray-500 mt-1 text-center">
-        26 students have already joined
+        26 students pelajar dah join
     </p>
 
 
@@ -160,6 +173,10 @@
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
+      setTimeout(() => {
+          document.getElementById("loading").classList.add("hidden");
+          document.getElementById("guarantee-content").classList.remove("hidden");
+        }, 5000); // 3 seconds
 
 
     }
