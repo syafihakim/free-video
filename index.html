@@ -161,10 +161,10 @@
       document.getElementById('step' + step).classList.remove('hidden');
 
       // Reset circles
-      ['step1Circle', 'step2Circle'].forEach(id => {
-        document.getElementById(id).classList.remove('bg-blue-500', 'text-white');
-        document.getElementById(id).classList.add('bg-gray-300', 'text-gray-600');
-      });
+      // ['step1Circle', 'step2Circle'].forEach(id => {
+      //   document.getElementById(id).classList.remove('bg-blue-500', 'text-white');
+      //   document.getElementById(id).classList.add('bg-gray-300', 'text-gray-600');
+      // });
 
       // Activate selected circle
       const active = document.getElementById('step' + step + 'Circle');
@@ -173,12 +173,15 @@
 
       const video = document.getElementById("myVideo");
 
-
       if (step == 2) {
         document.getElementById("nextBar").classList.add("hidden");
         video.pause();
+        document.getElementById("step1Circle").classList.add('bg-blue-500', 'text-white');
+        document.getElementById("step2Circle").classList.add('bg-blue-500', 'text-white');
       } else {
         document.getElementById("nextBar").classList.remove("hidden");
+        document.getElementById("step1Circle").classList.add('bg-blue-500', 'text-white');
+        document.getElementById("step2Circle").classList.add('bg-gray-300', 'text-gray-600');
       }
 
       updateCountdown();
