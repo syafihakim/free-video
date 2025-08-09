@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Video Lead Magnet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes blink-border {
+        0%, 100% {
+          border-color: rgba(255, 0, 0, 0.2); /* faint red */
+        }
+        50% {
+          border-color: rgba(255, 0, 0, 1); /* stronger red */
+        }
+      }
+
+      .blinking-border {
+        border: 2px solid rgba(255, 0, 0, 0.2);
+        animation: blink-border 1s infinite;
+        
+      }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen flex flex-col items-center p-6">
+
+  <!-- Stepper -->
+  <div class="flex items-center justify-between w-full max-w-2xl mb-6 mt-4">
+    <!-- Step 1 -->
+    <div class="flex flex-col items-center">
+      <button id="step1Circle" class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold"
+        onclick="goToStep(1)">1</button>
+      <span class="mt-2 text-xs">Tonton Video</span>
+    </div>
+
+    <!-- Line -->
+    <div class="flex-1 h-0.5 bg-gray-300 mx-2"></div>
+
+    <!-- Step 2 -->
+    <div class="flex flex-col items-center">
+      <button id="step2Circle" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 font-bold"
+        onclick="goToStep(2)">2</button>
+      <span class="mt-2 text-xs">Claim Bonus</span>
+    </div>
+  </div>
+
+  <!-- Step Content -->
+  <div id="step1" class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6 border border-gray-100 mb-20">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Step 1: Tonton DEMO 5 minit ini</h2>
+    <div class="relative w-full aspect-video bg-gray-200" id="videoWrapper">
+      <!-- Loading overlay -->
+      <div id="loadingOverlay" class="absolute inset-0 flex items-center justify-center bg-gray-200 z-10">
+        <span class="text-gray-600 text-sm">Loading video...</span>
+      </div>
+
+      <video 
+        id = "myVideo"
+        class="w-full border-0" controls preload="metadata"
+        autoplay muted loop playsinline
+        oncanplay="document.getElementById('loadingOverlay').style.display='none'">
+        <source src="LM.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+    </div>
+
+  </div>
+
+  <div id="step2" class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hidden mb-20">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Step 2: Join hari ini + claim jaminan full refund</h2>
+    <p class="text-sm mb-6 text-gray-600">
+      <!-- Harga : RM20 sahaja</br></br> -->
+      💎 Lifetime access</br>
+      ✅ Belajar anytime, tiada jadual</br>
+      ✅ Latihan disediakan</br>
+      ✅ Video disediakan</br>
+      ✅ Nota disediakan</br></br>
+      Harga tak masuk akal RM20!
+    </p>
+    <div class="bg-gray-500 text-white p-4 text-center mb-4 blinking-border">
+      <p class="mb-2 text-sm">
+        Daftar hari ini untuk dapatkan jaminan
+        <span class="text-yellow-400 font-bold">full refund</span> 
+        jika anda tak berpuas hati
+      </p>
+      <div id="countdown" class="text-l font-bold text-yellow-400"></div>
+    </div>
+
+    <a href="https://syafihakim.github.io/cpp-level-1-site/" 
+       class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg shadow-md transition duration-300 hover:shadow-lg hover:-translate-y-0.5 block w-full text-center">
+        Lihat details Pakej RM20
+    </a>
+    <p class="text-xs text-gray-500 mt-1 text-center">
+        26 students have already joined
+    </p>
+
+
+
+  </div>
+
+  <!-- Sticky Next Button -->
+  <div id="nextBar" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-md p-4 flex justify-end">
+    <button onclick="goToStep(2)"
+      class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow transition duration-300 hover:shadow-lg hover:-translate-y-0.5">
+      Next Step →
+    </button>
+  </div>
+
+  <!-- Inline JavaScript -->
+  <script>
+    var currStep = 1;
+
+    const targetTime = new Date('2025-08-09T23:59:00');
+
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetTime - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "Tawaran Tamat";
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${hours} jam ${minutes} min ${seconds} saat`;
+    }
+
+    function goToStep(step) {
+      // Hide all steps
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.add('hidden');
+
+      // Show the selected step
+      document.getElementById('step' + step).classList.remove('hidden');
+
+      // Reset circles
+      ['step1Circle', 'step2Circle'].forEach(id => {
+        document.getElementById(id).classList.remove('bg-blue-500', 'text-white');
+        document.getElementById(id).classList.add('bg-gray-300', 'text-gray-600');
+      });
+
+      // Activate selected circle
+      const active = document.getElementById('step' + step + 'Circle');
+      active.classList.remove('bg-gray-300', 'text-gray-600');
+      active.classList.add('bg-blue-500', 'text-white');
+
+      const video = document.getElementById("myVideo");
+
+
+      if (step == 2) {
+        document.getElementById("nextBar").classList.add("hidden");
+        video.pause();
+      } else {
+        document.getElementById("nextBar").classList.remove("hidden");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+
+    }
+  </script>
+
+</body>
+</html>
